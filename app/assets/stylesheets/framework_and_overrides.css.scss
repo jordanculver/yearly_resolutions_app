@@ -1,3 +1,8 @@
 // import the CSS framework
 @import "bootstrap";
 @import "bootstrap-responsive";
+
+.navbar-fixed-top .navbar-inner,
+.navbar-fixed-bottom .navbar-inner {
+  padding-left: 20px;
+}
