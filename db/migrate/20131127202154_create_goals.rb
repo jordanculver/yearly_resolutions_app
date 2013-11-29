@@ -4,11 +4,9 @@ class CreateGoals < ActiveRecord::Migration
       t.integer :category_id
       t.string :name
       t.text :description
-      t.text :progress_post
-      t.string :progress_photo
       t.integer :difficulty_level
-      t.boolean :completion
-      t.integer :milestones
+      t.boolean :completed
+      t.string :status
 
       t.timestamps
     end

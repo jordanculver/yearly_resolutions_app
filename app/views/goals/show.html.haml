@@ -1,0 +1,19 @@
+%h2 #{@goal.name}
+
+%h4 Difficulty level: #{@goal.difficulty_level}
+%br/
+
+%h4 Status
+%p= @goal.status
+
+%h4 Description
+%p= @goal.description
+
+%h4 Start Date
+%p= @goal.start_date
+
+%h4 Due Date
+%p= @goal.due_date
+
+%p= link_to "Goals", [current_user, :goals], class: 'btn btn-primary'
+%p= link_to "Edit", [:edit, current_user, @goal], class: 'btn'

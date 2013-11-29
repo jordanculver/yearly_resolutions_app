@@ -1,8 +1,6 @@
 class HomeController < ApplicationController
-
-  layout('application.html.haml')
+  skip_before_filter :authenticate_user!
 
   def index
-    @users = User.all
   end
 end

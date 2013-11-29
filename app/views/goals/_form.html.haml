@@ -1,0 +1,10 @@
+= simple_form_for [current_user, @goal] do |f|
+  = f.input :status, collection: goal_status_select, include_blank: false
+  = f.input :name
+  = f.input :description
+  = f.input :start_date, as: :string
+  = f.input :due_date, as: :string
+  = f.input :difficulty_level, collection: [*1..10]
+
+  = f.button :submit
+

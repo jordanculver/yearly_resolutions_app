@@ -1,12 +1,22 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
+  sequence(:email) { |n| "user#{n}@example.com" }
+
   factory :user do
     name 'Test User'
-    email 'example@example.com'
+    email { generate(:email) }
     password 'changeme'
     password_confirmation 'changeme'
-    # required if the Devise Confirmable module is used
-    confirmed_at Time.now
+
+    trait :admin do 
+      after(:create) do |user|
+        user.add_role :admin
+      end
+    end
+
+    trait :user do 
+      after(:create) do |user|
+        user.add_role :user
+      end
+    end
   end
 end

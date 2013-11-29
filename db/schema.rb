@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127202154) do
+ActiveRecord::Schema.define(version: 20131128185904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,11 +19,8 @@ ActiveRecord::Schema.define(version: 20131127202154) do
   create_table "categories", force: true do |t|
     t.integer  "resolution_id"
     t.string   "name"
-    t.boolean  "progress_post"
-    t.boolean  "progress_photo"
     t.boolean  "difficulty_level"
     t.boolean  "time_managing_message"
-    t.boolean  "completion_box"
     t.boolean  "milestones"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -33,23 +30,17 @@ ActiveRecord::Schema.define(version: 20131127202154) do
     t.integer  "category_id"
     t.string   "name"
     t.text     "description"
-    t.text     "progress_post"
-    t.string   "progress_photo"
     t.integer  "difficulty_level"
-    t.boolean  "completion"
-    t.integer  "milestones"
+    t.boolean  "completed"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.date     "start_date"
+    t.date     "due_date"
   end
 
-  create_table "resolutions", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "goals", ["user_id"], name: "index_goals_on_user_id", using: :btree
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -76,10 +67,6 @@ ActiveRecord::Schema.define(version: 20131127202154) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.string   "avatar"
   end
 

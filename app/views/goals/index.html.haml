@@ -1,0 +1,28 @@
+%h1 Goals #{link_to "Create a New Goal!", new_user_goal_path(current_user), class: 'btn btn-danger'}
+
+-# Inactive
+-# In Progress
+-# Completed
+
+%table.table.stripped.user-goals
+  %thead
+    %tr
+      %th Start Date
+      %th Due Date
+      %th Title
+      %th Description
+      %th Status
+
+  %tbody
+    - @goals.each do |goal|
+      %tr
+        %td= goal.start_date.to_s
+        %td= goal.due_date.to_s
+        %td= goal.name
+        %td= truncate(goal.description, length: 80)
+        %td= goal.status.humanize
+        %td
+          = link_to 'Show', [current_user, goal], class: 'btn btn-success'
+          = link_to 'Edit', [:edit, current_user, goal], class: 'btn btn-warning'
+          = link_to 'Delete', [current_user, goal], method: :delete, data: { confirm: 'Are you crazy!' }, class: 'btn btn-danger'
+

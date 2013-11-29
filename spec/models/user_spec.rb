@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe User do
 
+  it { should have_many(:goals).dependent(:destroy) }
+
   before(:each) do
     @attr = {
       :name => "Example User",
